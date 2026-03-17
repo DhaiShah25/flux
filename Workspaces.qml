@@ -33,6 +33,8 @@ WrapperRectangle {
                             return "";
                         case 3:
                             return "󱞁";
+                        case 8:
+                            return "󰧮";
                         default:
                             return modelData.name;
                         }

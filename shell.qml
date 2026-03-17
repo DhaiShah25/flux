@@ -5,10 +5,6 @@ import QtQuick
 Variants {
     model: Quickshell.screens
 
-    Component.onCompleted: {
-        console.log("\x1B[2J\x1B[3J\x1B[H");
-    }
-
     delegate: Component {
         PanelWindow {
             id: bar
@@ -36,12 +32,13 @@ Variants {
 
             Row {
                 spacing: 10
+                Power {}
                 Clock {}
                 Workspaces {}
             }
 
             Players {
-                anchors.verticalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 
