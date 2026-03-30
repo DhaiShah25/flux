@@ -10,7 +10,9 @@ Variants {
             id: bar
             required property var modelData
 
-            Eye {}
+            Eye {
+                screen: modelData
+            }
 
             screen: modelData
             color: "transparent"
