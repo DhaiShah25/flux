@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell
+import Quickshell.Io
 
 PanelWindow {
     id: eyeTimer
@@ -20,8 +21,12 @@ PanelWindow {
         interval: eyeTimer.visible ? 20000 : 1200000
         running: true
         repeat: true
-        onTriggered: eyeTimer.visible = !eyeTimer.visible
+        onTriggered: {
+            eyeTimer.visible = !eyeTimer.visible;
+            breakSoundRunner.exec(["ffplay", "/run/current-system/sw/share/sounds/ocean/stereo/bell.oga", "-nodisp", "-autoexit", "-af", "volume=2.0"]);
+        }
     }
+    Process {id: breakSoundRunner}
 
     Column {
         anchors.centerIn: parent
