@@ -1,57 +1,35 @@
 //@ pragma UseQApplication
 import Quickshell
 import QtQuick
+import Quickshell.Io
+ShellRoot {
+    id: root
+    property bool eyeVisible: false
+    Timer {
+        interval: eyeVisible ? 20000 : 1200000
+        running: true
+        repeat: true
+        onTriggered: {
+            eyeVisible = !eyeVisible;
+            breakSoundRunner.exec(["ffplay", "/run/current-system/sw/share/sounds/ocean/stereo/bell.oga", "-nodisp", "-autoexit", "-af", "volume=1.0"]);
+        }
+    }
+    Process {id: breakSoundRunner}
 
-Variants {
-    model: Quickshell.screens
+    Variants {
+        model: Quickshell.screens
 
-    delegate: Component {
-        PanelWindow {
-            id: bar
+
+        delegate: Item {
             required property var modelData
-
-            Eye {
+            Bar {
                 screen: modelData
             }
-
-            screen: modelData
-            color: "transparent"
-
-            anchors {
-                top: true
-                left: true
-                right: true
-            }
-
-            margins {
-                left: 3
-                right: 3
-                top: 3
-                bottom: 3
-            }
-
-            implicitHeight: 30
-
-            Row {
-                spacing: 10
-                Power {}
-                Clock {}
-                Workspaces {}
-            }
-
-            Players {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
-
-            Row {
-                anchors.right: parent.right
-                spacing: 10
-
-                SystemTray {}
-                NotifIcon {}
-                Volume {}
+            Eye {
+                screen: modelData
+                visible: root.eyeVisible
             }
         }
     }
+
 }
