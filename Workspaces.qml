@@ -3,12 +3,10 @@ import Quickshell.Widgets
 import Quickshell.Hyprland
 
 WrapperRectangle {
-    color: "#303446"
-    margin: 4
-    radius: 4
+    color: Theme.bgBase
+    margin: Theme.defaultMargin
+    radius: Theme.cornerRadius
     implicitHeight: 30
-    border.color: "#8caaee"
-    border.width: 1
 
     Row {
         spacing: 10
@@ -25,23 +23,10 @@ WrapperRectangle {
 
                 Text {
                     anchors.centerIn: parent
-                    text: {
-                        switch (modelData.id) {
-                        case 1:
-                            return "󰖟";
-                        case 2:
-                            return "";
-                        case 3:
-                            return "󱞁";
-                        case 8:
-                            return "󰧮";
-                        default:
-                            return modelData.name;
-                        }
-                    }
-                    font.family: "MonaspiceRn NFP"
+                    text: modelData.name
+                    font.family: "Iosevka Nerd Font Propo"
                     font.pointSize: 14.0
-                    color: modelData.active ? "#8caaee" : "#c6d0f5"
+                    color: modelData.active ? Theme.accent : Theme.textMain
                 }
             }
         }

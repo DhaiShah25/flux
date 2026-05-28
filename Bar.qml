@@ -22,7 +22,7 @@ PanelWindow {
     implicitHeight: 30
 
     Row {
-        spacing: 10
+        spacing: Theme.defaultSpacing
         Power {}
         Clock {}
         Workspaces {}
@@ -35,7 +35,7 @@ PanelWindow {
 
     Row {
         anchors.right: parent.right
-        spacing: 10
+        spacing: Theme.defaultSpacing
 
         SystemTray {}
         NotifIcon {}

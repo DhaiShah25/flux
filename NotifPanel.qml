@@ -5,24 +5,21 @@ import Quickshell.Widgets
 import Quickshell.Services.Notifications
 
 WrapperRectangle {
-    color: "#303446"
+    color: Theme.bgBase
 
-    radius: 4
-    margin: 4
+    radius: Theme.cornerRadius
+    margin: Theme.defaultMargin
     implicitWidth: parent.width
     implicitHeight: parent.height - 8
-
-    border.color: "#8caaee"
-    border.width: 1
 
     Column {
         Text {
             text: "Notifications:"
 
-            font.family: "MonaspiceRn NFP"
+            font.family: "Iosevka Nerd Font Propo"
             font.pointSize: 24.0
             font.bold: true
-            color: "#c6d0f5"
+            color: Theme.textMain
         }
 
         ListView {
@@ -58,7 +55,7 @@ WrapperRectangle {
                             Text {
                                 width: parent.width
                                 text: notif.modelData.summary
-                                font.family: "MonaspiceRn NFP"
+                                font.family: "Iosevka Nerd Font Propo"
                                 font.pointSize: 14.
                                 font.bold: true
                                 color: "#c6d0f5"
@@ -68,7 +65,7 @@ WrapperRectangle {
                             Text {
                                 width: parent.width
                                 text: notif.modelData.body
-                                font.family: "MonaspiceRn NFP"
+                                font.family: "Iosevka Nerd Font Propo"
                                 font.pointSize: 10.
                                 font.bold: true
                                 color: "#b5bfe2"
@@ -110,7 +107,7 @@ WrapperRectangle {
         contentItem: Text {
             text: control.text
             font {
-                family: "MonaspiceRn NFP"
+                family: "Iosevka Nerd Font Propo"
                 pointSize: 12
             }
             color: "#c6d0f5"

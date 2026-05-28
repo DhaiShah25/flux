@@ -6,22 +6,16 @@ import Quickshell.Widgets
 WrapperRectangle {
     id: powerButton
 
-    color: "#303446"
-    margin: 4
-    radius: 4
+    color: Theme.bgBase
+    margin: Theme.defaultMargin
+    radius: Theme.cornerRadius
     implicitHeight: 30
-    border.color: "#8caaee"
-    border.width: 1
 
     Text {
         id: contentText
-        text: ""
-        color: "#c6d0f5"
-        font {
-            family: "MonaspiceRn NFP"
-            pointSize: 14
-        }
-
+        text: ""
+        color: Theme.textMain
+        font: Theme.defaultFont
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -39,23 +33,20 @@ WrapperRectangle {
 
         WrapperRectangle {
             id: contentRect
-            color: "#303446"
-            margin: 4
-            radius: 4
-
-            border.color: "#8caaee"
-            border.width: 1
+            color: Theme.bgBase
+            margin: Theme.defaultMargin
+            radius: Theme.cornerRadius
 
             child: Column {
-                spacing: 10
+                spacing: Theme.defaultSpacing
 
                 Text {
                     text: "Sleep"
                     font {
-                        family: "MonaspiceRn NFP"
+                        family: "Iosevka Nerd Font Propo"
                         pointSize: 12
                     }
-                    color: "#c6d0f5"
+                    color: Theme.textMain
                     MouseArea {
                         anchors.fill: parent
                         onClicked: sleepProc.running = true
@@ -69,10 +60,10 @@ WrapperRectangle {
                 Text {
                     text: "Hibernate"
                     font {
-                        family: "MonaspiceRn NFP"
+                        family: "Iosevka Nerd Font Propo"
                         pointSize: 12
                     }
-                    color: "#c6d0f5"
+                    color: Theme.textMain
                     MouseArea {
                         anchors.fill: parent
                         onClicked: hibernateProc.running = true
@@ -86,10 +77,10 @@ WrapperRectangle {
                 Text {
                     text: "Shutdown"
                     font {
-                        family: "MonaspiceRn NFP"
+                        family: "Iosevka Nerd Font Propo"
                         pointSize: 12
                     }
-                    color: "#c6d0f5"
+                    color: Theme.textMain
                     MouseArea {
                         anchors.fill: parent
                         onClicked: shutdownProc.running = true
@@ -103,10 +94,10 @@ WrapperRectangle {
                 Text {
                     text: "Restart"
                     font {
-                        family: "MonaspiceRn NFP"
+                        family: "Iosevka Nerd Font Propo"
                         pointSize: 12
                     }
-                    color: "#c6d0f5"
+                    color: Theme.textMain
                     MouseArea {
                         anchors.fill: parent
                         onClicked: restartProc.running = true

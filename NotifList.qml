@@ -11,13 +11,11 @@ WrapperRectangle {
     property alias model: listView.model
     property string title: "Notifications:"
 
-    color: "#303446"
-    radius: 4
-    margin: 4
+    color: Theme.bgBase
+    radius: Theme.cornerRadius
+    margin: Theme.defaultMargin
     implicitWidth: parent.width
     implicitHeight: parent.height - 8
-    border.color: "#8caaee"
-    border.width: 1
 
     ColumnLayout {
         anchors.fill: parent
@@ -26,17 +24,17 @@ WrapperRectangle {
         Text {
             text: root.title
             Layout.leftMargin: 8
-            font.family: "MonaspiceRn NFP"
+            font.family: "Iosevka Nerd Font Propo"
             font.pointSize: 24.0
             font.bold: true
-            color: "#c6d0f5"
+            color: Theme.textMain
         }
 
         ListView {
             id: listView
             Layout.fillWidth: true
             Layout.fillHeight: true
-            spacing: 10
+            spacing: Theme.defaultSpacing
             clip: true
 
             delegate: WrapperRectangle {
@@ -70,16 +68,16 @@ WrapperRectangle {
                             Text {
                                 width: parent.width
                                 text: notif.modelData.summary
-                                font.family: "MonaspiceRn NFP"
+                                font.family: "Iosevka Nerd Font Propo"
                                 font.pointSize: 14.
                                 font.bold: true
-                                color: "#c6d0f5"
+                                color: Theme.textMain
                                 wrapMode: Text.WordWrap
                             }
                             Text {
                                 width: parent.width
                                 text: notif.modelData.body
-                                font.family: "MonaspiceRn NFP"
+                                font.family: "Iosevka Nerd Font Propo"
                                 font.pointSize: 10.
                                 font.bold: true
                                 color: "#b5bfe2"
@@ -119,10 +117,10 @@ WrapperRectangle {
         contentItem: Text {
             text: control.text
             font {
-                family: "MonaspiceRn NFP"
+                family: "Iosevka Nerd Font Propo"
                 pointSize: 12
             }
-            color: "#c6d0f5"
+            color: Theme.textMain
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }

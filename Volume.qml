@@ -3,18 +3,16 @@ import Quickshell.Widgets
 import Quickshell.Services.Pipewire
 
 WrapperRectangle {
-    color: "#303446"
-    margin: 4
-    radius: 4
+    color: Theme.bgBase
+    margin: Theme.defaultMargin
+    radius: Theme.cornerRadius
     implicitHeight: 30
-    border.color: "#8caaee"
-    border.width: 1
 
     Text {
         text: (Pipewire.defaultAudioSink.audio.volume * 100).toFixed(0) + (Pipewire.defaultAudioSink.audio.muted ? "% " : "% ")
-        font.family: "MonaspiceRn NFP"
+        font.family: "Iosevka Nerd Font Propo"
         font.pointSize: 14.
-        color: "#e0def4"
+        color: Theme.textMain
 
         PwObjectTracker {
             objects: [Pipewire.defaultAudioSink]

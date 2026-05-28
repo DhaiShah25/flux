@@ -9,20 +9,17 @@ WrapperRectangle {
     margin: 4
     implicitHeight: 30
     radius: 4
-    border.color: "#8caaee"
-    border.width: 1
 
     Text {
         text: " "
-        font.family: "MonaspiceRn NFP"
-        font.pointSize: 14.0
-        color: "#c6d0f5"
+        font: Theme.defaultFont
+        color: Theme.textMain
         Text {
             text: NotifData.tracked.values.length
-            font.family: "MonaspiceRn NFP"
+            font.family: "Iosevka Nerd Font Propo"
             font.pointSize: 8.0
             font.bold: true
-            color: "#c6d0f5"
+            color: Theme.textMain
             anchors.bottom: parent.bottom
             anchors.right: parent.right
         }

@@ -1,23 +1,37 @@
 import QtQuick
 import Quickshell
 import Quickshell.Widgets
+import QtQuick.Controls
 
 WrapperRectangle {
-    color: "#303446"
-    margin: 4
-    radius: 4
-    implicitHeight: 30
-    border.color: "#8caaee"
-    border.width: 1
-    Text {
-        text: Qt.formatDateTime(clock.date, "ddd - hh:mm A")
-        font.family: "MonaspiceRn NFP"
-        font.pointSize: 14.0
-        color: "#c6d0f5"
+    color: Theme.bgBase
+    margin: Theme.defaultMargin
+    radius: Theme.cornerRadius
 
-        SystemClock {
-            id: clock
-            precision: SystemClock.Minutes
+    implicitWidth: clockText.implicitWidth + 24 
+    implicitHeight: 30
+
+    Button {
+        id: clockButton
+        anchors.fill: parent
+        hoverEnabled: true
+
+        background: Rectangle {
+            color: "transparent"
+        }
+
+        contentItem: Text {
+            id: clockText
+            text: clockButton.hovered ? Qt.formatDateTime(clock.date, "MMM d, yyyy") : Qt.formatDateTime(clock.date, "ddd - hh:mm A")
+            font: Theme.defaultFont
+            color: Theme.textMain
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
+            SystemClock {
+                id: clock
+                precision: SystemClock.Minutes
+            }
         }
     }
 }

@@ -12,11 +12,9 @@ Repeater {
 
         width: 30
         height: 30
-        radius: 4
-        margin: 4
-        color: "#303446"
-        border.color: "#8caaee"
-        border.width: 1
+        color: Theme.bgBase
+        margin: Theme.defaultMargin
+        radius: Theme.cornerRadius
 
         IconImage {
             source: trayItem.modelData.icon

@@ -4,7 +4,7 @@ import Quickshell
 PanelWindow {
     id: eyeTimer
     focusable: false
-    color: "#303446"
+    color: Theme.bgBase
 
     required property var screen
 
@@ -21,10 +21,10 @@ PanelWindow {
         anchors.centerIn: parent
         Text {
             text: "Eye Break"
-            font.family: "MonaspiceRn NFP"
+            font.family: "Iosevka Nerd Font Propo"
             font.bold: true
             font.pointSize: 160
-            color: "#c6d0f5"
+            color: Theme.textMain
             horizontalAlignment: Text.AlignHCenter
         }
     }

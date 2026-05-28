@@ -11,13 +11,11 @@ WrapperRectangle {
 
     property var player: Mpris.players.values.find(p => p.isPlaying) || Mpris.players.values[0]
 
-    color: "#303446"
-    margin: 4
-    radius: 4
+    color: Theme.bgBase
+    margin: Theme.defaultMargin
+    radius: Theme.cornerRadius
     implicitHeight: 30
     width: Math.min(contentText.implicitWidth + 20, 800)
-    border.color: "#8caaee"
-    border.width: 1
 
     component MediaButton: Button {
         id: control
@@ -25,10 +23,10 @@ WrapperRectangle {
         contentItem: Text {
             text: control.text
             font {
-                family: "MonaspiceRn NFP"
+                family: "Iosevka Nerd Font Propo"
                 pointSize: 12
             }
-            color: "#c6d0f5"
+            color: Theme.textMain
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }
@@ -44,11 +42,8 @@ WrapperRectangle {
         anchors.fill: parent
         anchors.margins: 10
         text: player ? `${player.trackArtist} - ${player.trackTitle}` : "No Media"
-        color: "#c6d0f5"
-        font {
-            family: "MonaspiceRn NFP"
-            pointSize: 14
-        }
+        color: Theme.textMain
+        font: Theme.defaultFont
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
@@ -80,13 +75,10 @@ WrapperRectangle {
 
         WrapperRectangle {
             id: contentRect
-            color: "#303446"
-            margin: 4
-            radius: 4
+            color: Theme.bgBase
+            margin: Theme.defaultMargin
+            radius: Theme.cornerRadius
             implicitWidth: 500
-
-            border.color: "#8caaee"
-            border.width: 1
 
             child: ColumnLayout {
                 width: parent.width - 20
@@ -95,11 +87,11 @@ WrapperRectangle {
 
                 Row {
                     Layout.fillWidth: true
-                    spacing: 8
+                    spacing: Theme.defaultSpacing
                     ClippingWrapperRectangle {
                         radius: 20
-                        margin: 4
-                        color: "#303446"
+                        margin: Theme.cornerRadius
+                        color: Theme.bgBase
                         IconImage {
                             visible: musicPlayer.player?.trackArtUrl
                             source: musicPlayer.player?.trackArtUrl
@@ -112,10 +104,10 @@ WrapperRectangle {
                     Column {
                         Text {
                             text: musicPlayer.player?.trackTitle ?? "Unknown Title"
-                            color: "#c6d0f5"
+                            color: Theme.textMain
                             width: musicPane.width - 116
                             font {
-                                family: "MonaspiceRn NFP"
+                                family: "Iosevka Nerd Font Propo"
                                 pointSize: 14
                                 bold: true
                             }
@@ -203,11 +195,11 @@ WrapperRectangle {
                         implicitWidth: 12
                         implicitHeight: 12
                         radius: 3
-                        color: "#8caaee"
+                        color: Theme.accent
                         visible: musicPlayer.player?.canControl
                     }
                     onMoved: if (musicPlayer.player?.canControl)
-                        musicPlayer.player.position = value
+                    musicPlayer.player.position = value
                 }
 
                 Slider {
@@ -229,7 +221,7 @@ WrapperRectangle {
                         Rectangle {
                             width: volumeSlider.visualPosition * parent.width
                             height: parent.height
-                            color: "#8caaee"
+                            color: Theme.accent
                             radius: 2
                         }
                     }
