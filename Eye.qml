@@ -2,30 +2,30 @@ import QtQuick
 import Quickshell
 
 PanelWindow {
-    id: eyeTimer
-    focusable: false
-    color: Theme.bgBase
+  id: eyeTimer
 
-    required property var screen
+  required property var screen
 
-    exclusionMode: ExclusionMode.Normal
+  color: Theme.bgBase
+  exclusionMode: ExclusionMode.Normal
+  focusable: false
 
-    anchors {
-        top: true
-        left: true
-        right: true
-        bottom: true
+  anchors {
+    bottom: true
+    left: true
+    right: true
+    top: true
+  }
+  Column {
+    anchors.centerIn: parent
+
+    Text {
+      color: Theme.textMain
+      font.bold: true
+      font.family: "Iosevka Nerd Font Propo"
+      font.pointSize: 160
+      horizontalAlignment: Text.AlignHCenter
+      text: "Eye Break"
     }
-
-    Column {
-        anchors.centerIn: parent
-        Text {
-            text: "Eye Break"
-            font.family: "Iosevka Nerd Font Propo"
-            font.bold: true
-            font.pointSize: 160
-            color: Theme.textMain
-            horizontalAlignment: Text.AlignHCenter
-        }
-    }
+  }
 }

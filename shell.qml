@@ -2,34 +2,38 @@
 import Quickshell
 import QtQuick
 import Quickshell.Io
+
 ShellRoot {
-    id: root
-    property bool eyeVisible: false
-    Timer {
-        interval: eyeVisible ? 20000 : 1200000
-        running: true
-        repeat: true
-        onTriggered: {
-            eyeVisible = !eyeVisible;
-            breakSoundRunner.exec(["ffplay", "/run/current-system/sw/share/sounds/ocean/stereo/bell.oga", "-nodisp", "-autoexit", "-af", "volume=1.0"]);
-        }
+  id: root
+
+  property bool eyeVisible: false
+
+  Timer {
+    interval: eyeVisible ? 20000 : 1200000
+    repeat: true
+    running: true
+
+    onTriggered: {
+      eyeVisible = !eyeVisible;
+      breakSoundRunner.exec(["ffplay", "/run/current-system/sw/share/sounds/ocean/stereo/bell.oga", "-nodisp", "-autoexit", "-af", "volume=1.0"]);
     }
-    Process {id: breakSoundRunner}
+  }
+  Process {
+    id: breakSoundRunner
+  }
+  Variants {
+    model: Quickshell.screens
 
-    Variants {
-        model: Quickshell.screens
+    delegate: Item {
+      required property var modelData
 
-
-        delegate: Item {
-            required property var modelData
-            Bar {
-                screen: modelData
-            }
-            Eye {
-                screen: modelData
-                visible: root.eyeVisible
-            }
-        }
+      Bar {
+        screen: modelData
+      }
+      Eye {
+        screen: modelData
+        visible: root.eyeVisible
+      }
     }
-
+  }
 }

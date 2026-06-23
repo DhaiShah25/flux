@@ -3,32 +3,33 @@ import Quickshell.Widgets
 import Quickshell.Hyprland
 
 WrapperRectangle {
-    color: Theme.bgBase
-    margin: Theme.defaultMargin
-    radius: Theme.cornerRadius
-    implicitHeight: 30
+  color: Theme.bgBase
+  implicitHeight: 30
+  margin: Theme.defaultMargin
+  radius: Theme.cornerRadius
 
-    Row {
-        spacing: 10
-        Repeater {
-            model: Hyprland.workspaces
+  Row {
+    spacing: 10
 
-            delegate: Rectangle {
-                required property var modelData
+    Repeater {
+      model: Hyprland.workspaces
 
-                width: 20
-                height: 20
-                radius: 3
-                color: "transparent"
+      delegate: Rectangle {
+        required property var modelData
 
-                Text {
-                    anchors.centerIn: parent
-                    text: modelData.name
-                    font.family: "Iosevka Nerd Font Propo"
-                    font.pointSize: 14.0
-                    color: modelData.active ? Theme.accent : Theme.textMain
-                }
-            }
+        color: "transparent"
+        height: 20
+        radius: 3
+        width: 20
+
+        Text {
+          anchors.centerIn: parent
+          color: modelData.active ? Theme.accent : Theme.textMain
+          font.family: "Iosevka Nerd Font Propo"
+          font.pointSize: 14.0
+          text: modelData.name
         }
+      }
     }
+  }
 }

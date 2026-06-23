@@ -2,43 +2,39 @@ import QtQuick
 import Quickshell
 
 PanelWindow {
-    id: bar
+  id: bar
 
-    color: "transparent"
+  color: "transparent"
+  implicitHeight: 30
 
-    anchors {
-        top: true
-        left: true
-        right: true
-    }
+  anchors {
+    left: true
+    right: true
+    top: true
+  }
+  margins {
+    bottom: 3
+    left: 3
+    right: 3
+    top: 3
+  }
+  Row {
+    spacing: Theme.defaultSpacing
 
-    margins {
-        left: 3
-        right: 3
-        top: 3
-        bottom: 3
-    }
+    Power {}
+    Clock {}
+    Workspaces {}
+  }
+  Players {
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+  }
+  Row {
+    anchors.right: parent.right
+    spacing: Theme.defaultSpacing
 
-    implicitHeight: 30
-
-    Row {
-        spacing: Theme.defaultSpacing
-        Power {}
-        Clock {}
-        Workspaces {}
-    }
-
-    Players {
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
-
-    Row {
-        anchors.right: parent.right
-        spacing: Theme.defaultSpacing
-
-        SystemTray {}
-        NotifIcon {}
-        Volume {}
-    }
+    SystemTray {}
+    NotifIcon {}
+    Volume {}
+  }
 }
