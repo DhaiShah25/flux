@@ -24,7 +24,7 @@ ShellRoot {
   Variants {
     model: Quickshell.screens
 
-    delegate: Item {
+    delegate: Scope {
       required property var modelData
 
       Bar {

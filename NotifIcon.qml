@@ -11,27 +11,18 @@ WrapperRectangle {
   margin: 4
   radius: 4
 
-  Text {
+  child: Text {
     color: Theme.textMain
     font: Theme.defaultFont
-    text: " "
+    text: " " + (NotifData.history.count || "")
 
-    Text {
-      anchors.bottom: parent.bottom
-      anchors.right: parent.right
-      color: Theme.textMain
-      font.bold: true
-      font.family: "Iosevka Nerd Font Propo"
-      font.pointSize: 8.0
-      text: Notifs.history.length
-      visible: Notifs.history.length !== 0
-    }
     MouseArea {
       anchors.fill: parent
 
-      onClicked: notifs.centerOpen = !notifs.centerOpen
+      onClicked: NotifData.centerOpen = !NotifData.centerOpen
     }
   }
+
   Notifs {
     id: notifs
   }

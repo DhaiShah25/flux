@@ -8,49 +8,9 @@ import QtQuick.Layouts
 
 import "config.js" as Config
 
-Scope {
+Item {
   id: notifRoot
 
-  property bool centerOpen: false
-
-  ListModel {
-    id: history
-  }
-  NotificationServer {
-    id: server
-
-    actionsSupported: true
-    bodySupported: true
-    imageSupported: true
-
-    onNotification: notif => {
-      notif.tracked = true;
-      console.log(notif.actions.length);
-      history.insert(0, {
-        summary: notif.summary,
-        body: notif.body,
-        appName: notif.appName,
-        time: Qt.formatDateTime(Date.now(), "HH:mm")
-      });
-      notifSoundRunner.exec(["ffplay", "/run/current-system/sw/share/sounds/ocean/stereo/outcome-success.oga", "-nodisp", "-autoexit", "-af", "volume=1.0"]);
-    }
-  }
-  IpcHandler {
-    function hide(): void {
-      notifRoot.centerOpen = false;
-    }
-    function show(): void {
-      notifRoot.centerOpen = true;
-    }
-    function toggle(): void {
-      notifRoot.centerOpen = !notifRoot.centerOpen;
-    }
-
-    target: "notifs"
-  }
-  Process {
-    id: notifSoundRunner
-  }
   PanelWindow {
     color: "transparent"
     exclusionMode: ExclusionMode.Ignore
@@ -72,7 +32,7 @@ Scope {
       width: parent.width
 
       Repeater {
-        model: server.trackedNotifications
+        model: NotifData.server.trackedNotifications
 
         delegate: WrapperRectangle {
           id: card
@@ -128,25 +88,25 @@ Scope {
                     color: "transparent"
                     margin: 4
 
-                    Text {
+                    child: Text {
                       color: Config.colors.red
-                      text: ""
+                      text: "x"
 
                       font {
                         family: Config.bar.fontSize
                         pointSize: 12
                       }
                     }
-                    MouseArea {
-                      anchors.fill: parent
+                  }
+                  MouseArea {
+                    anchors.fill: parent
 
-                      onClicked: card.modelData.dismiss()
-                    }
+                    onClicked: card.modelData.dismiss()
                   }
                 }
                 Text {
                   Layout.fillWidth: true
-                  color: Config.colors.cyan
+                  color: Config.colors.text
                   font.family: Config.bar.fontFamily
                   font.pixelSize: Config.bar.fontSize * 0.8
                   text: card.modelData.body
@@ -194,7 +154,7 @@ Scope {
     exclusionMode: ExclusionMode.Ignore
     implicitHeight: centerCol.implicitHeight + 24
     implicitWidth: 380
-    visible: notifRoot.centerOpen
+    visible: NotifData.centerOpen
 
     anchors {
       right: true
@@ -235,17 +195,21 @@ Scope {
             font.family: Config.bar.fontFamily
             font.pointSize: Config.bar.fontSize - 4
             text: "Clear All"
-            visible: history.count > 0
+            visible: NotifData.history.count !== 0
 
             MouseArea {
               anchors.fill: parent
 
-              onClicked: history.clear()
+              onClicked: NotifData.history.clear()
             }
           }
         }
-        Repeater {
-          model: history
+        ListView {
+          clip: false
+          height: 600
+          model: NotifData.history
+          spacing: 10
+          width: 360
 
           delegate: WrapperRectangle {
             id: card
@@ -253,12 +217,12 @@ Scope {
             required property int index
             required property var modelData
 
-            Layout.fillWidth: true
             border.color: modelData.urgency === NotificationUrgency.Critical ? Config.colors.red : Config.colors.accent
             border.width: 1
             color: Config.colors.bg
             margin: 4
             radius: 8
+            width: 360
 
             ColumnLayout {
               Layout.fillWidth: true
@@ -291,13 +255,13 @@ Scope {
                   MouseArea {
                     anchors.fill: parent
 
-                    onClicked: history.remove(index)
+                    onClicked: NotifData.history.remove(index)
                   }
                 }
               }
               Text {
                 Layout.fillWidth: true
-                color: Config.colors.cyan
+                color: Config.colors.text
                 font.family: Config.bar.fontFamily
                 font.pixelSize: Config.bar.fontSize * 0.8
                 text: card.modelData.body
