@@ -12,7 +12,7 @@ WrapperRectangle {
     color: Theme.textMain
     font.family: "Iosevka Nerd Font Propo"
     font.pointSize: 14.
-    text: (Pipewire.defaultAudioSink.audio.volume * 100).toFixed(0) + (Pipewire.defaultAudioSink.audio.muted ? "% " : "% ")
+    text: (Pipewire.defaultAudioSink?.audio?.volume * 100).toFixed(0) + (Pipewire.defaultAudioSink?.audio?.muted ? "% " : "% ")
 
     PwObjectTracker {
       objects: [Pipewire.defaultAudioSink]
